@@ -28,40 +28,55 @@ class Main {
         livestockRecords.add(livestock1);
         livestockRecords.add(livestock2);
 
-        // Example usage: Printing details of farm incomes
+        // Print farm incomes as a table
         System.out.println("Farm Incomes:");
+        printFarmIncomesTable(farmIncomes);
+
+        // Print farm expenses as a table
+        System.out.println("\nFarm Expenses:");
+        printFarmExpensesTable(farmExpenses);
+
+        // Print livestock records as a table
+        System.out.println("\nLivestock Records:");
+        printLivestockRecordsTable(livestockRecords);
+    }
+
+    // Method to print farm incomes as a table
+    public static void printFarmIncomesTable(ArrayList<FarmIncome> farmIncomes) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        // Print header row
+        System.out.printf("%-15s%-20s%-25s%-15s%-10s%-10s%n", "Date", "Source", "Description", "Payment Method", "Amount", "Month");
+        
+        // Print each income as a row in the table
         for (FarmIncome income : farmIncomes) {
-            System.out.println("Date: " + income.getDate());
-            System.out.println("Source: " + income.getSource());
-            System.out.println("Description: " + income.getDescription());
-            System.out.println("Payment Method: " + income.getPaymentMethod());
-            System.out.println("Amount: " + income.getAmount());
-            System.out.println("Month: " + income.getMonth());
-            System.out.println();
+            String dateStr = dateFormat.format(income.getDate());
+            System.out.printf("%-15s%-20s%-25s%-15s%-10.2f%-10d%n", dateStr, income.getSource(), income.getDescription(), income.getPaymentMethod(), income.getAmount(), income.getMonth());
         }
+    }
 
-        // Example: Print details of farm expenses
-        System.out.println("Farm Expenses:");
+    // Method to print farm expenses as a table
+    public static void printFarmExpensesTable(ArrayList<FarmExpenses> farmExpenses) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        // Print header row
+        System.out.printf("%-15s%-20s%-15s%-20s%-10s%n", "Date", "Expenses", "Cost", "Remarks", "Month");
+        
+        // Print each expense as a row in the table
         for (FarmExpenses expense : farmExpenses) {
-            System.out.println("Date: " + expense.getDate());
-            System.out.println("Expenses: " + expense.getExpenses());
-            System.out.println("Cost: " + expense.getCost());
-            System.out.println("Remarks: " + expense.getRemarks());
-            System.out.println("Month: " + expense.getMonth());
-            System.out.println();
+            String dateStr = dateFormat.format(expense.getDate());
+            System.out.printf("%-15s%-20s%-15.2f%-20s%-10d%n", dateStr, expense.getExpenses(), expense.getCost(), expense.getRemarks(), expense.getMonth());
         }
+    }
 
-        // Example: Print details of livestock records
-        System.out.println("Livestock Records:");
+    // Method to print livestock records as a table
+    public static void printLivestockRecordsTable(ArrayList<LivestockRecord> livestockRecords) {
+        // Print header row
+        System.out.printf("%-15s%-15s%-10s%-10s%-15s%-15s%-15s%n", "Name", "Gender", "Weight", "Value", "Bought Price", "Sale Price", "Animal Type");
+        
+        // Print each livestock record as a row in the table
         for (LivestockRecord livestock : livestockRecords) {
-            System.out.println("Name: " + livestock.getName());
-            System.out.println("Gender: " + livestock.getGender());
-            System.out.println("Weight: " + livestock.getWeight());
-            System.out.println("Value: " + livestock.getValue());
-            System.out.println("Bought Price: " + livestock.getBoughtPrice());
-            System.out.println("Sale Price: " + livestock.getSalePrice());
-            System.out.println("Animal Type: " + livestock.getAnimalType());
-            System.out.println();
+            System.out.printf("%-15s%-15s%-10.2f%-10.2f%-15.2f%-15.2f%-15s%n", livestock.getName(), livestock.getGender(), livestock.getWeight(), livestock.getValue(), livestock.getBoughtPrice(), livestock.getSalePrice(), livestock.getAnimalType());
         }
     }
 }
